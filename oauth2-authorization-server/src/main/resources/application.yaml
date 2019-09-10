@@ -1,0 +1,17 @@
+server:
+  port: 9191
+  servlet:
+    context-path: /as
+    session:
+      timeout: 60 # Session timeout in seconds, to require periodic client re-authentication
+
+security:
+  oauth2:
+    authorization:
+      jwt:
+        key-value: secret-jwt-key # Access token shared secret
+
+logging:
+  level:
+    org.springframework: DEBUG
+    no.bouvet.sandvika.oauth2: TRACE
