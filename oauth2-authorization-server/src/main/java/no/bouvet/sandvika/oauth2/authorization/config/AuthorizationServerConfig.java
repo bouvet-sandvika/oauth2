@@ -2,6 +2,7 @@ package no.bouvet.sandvika.oauth2.authorization.config;
 
 import no.bouvet.sandvika.oauth2.authorization.properties.AuthorizationProperties;
 import no.bouvet.sandvika.oauth2.authorization.properties.ClientProperties;
+import no.bouvet.sandvika.oauth2.authorization.token.FilterAuthoritiesAccessTokenConverter;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.security.oauth2.authserver.AuthorizationServerTokenServicesConfiguration;
 import org.springframework.context.annotation.Configuration;
@@ -22,19 +23,23 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 
     private final int sessionTimeout;
     private final List<ClientProperties> clientPropertiesList;
+    private final FilterAuthoritiesAccessTokenConverter filterAuthoritiesAccessTokenConverter;
     private final JwtAccessTokenConverter accessTokenConverter;
 
     public AuthorizationServerConfig(@Value("${server.servlet.session.timeout}") int sessionTimeout,
                                      AuthorizationProperties authorizationProperties,
+                                     FilterAuthoritiesAccessTokenConverter filterAuthoritiesAccessTokenConverter,
                                      JwtAccessTokenConverter accessTokenConverter) {
         this.sessionTimeout = sessionTimeout;
         this.clientPropertiesList = authorizationProperties.getClients();
+        this.filterAuthoritiesAccessTokenConverter = filterAuthoritiesAccessTokenConverter;
         this.accessTokenConverter = accessTokenConverter;
     }
 
     @Override
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) {
         // Use AccessTokenConverter from AuthorizationServerTokenServicesConfiguration for JWT token support
+        accessTokenConverter.setAccessTokenConverter(filterAuthoritiesAccessTokenConverter);
         endpoints.accessTokenConverter(accessTokenConverter);
     }
 

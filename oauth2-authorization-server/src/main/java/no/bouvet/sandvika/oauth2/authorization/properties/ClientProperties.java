@@ -22,5 +22,7 @@ public class ClientProperties {
     @Builder.Default
     private Set<String> scopes = emptySet();
     @Builder.Default
+    private Set<String> allowedAuthorities = emptySet();
+    @Builder.Default
     private Set<String> redirectUris = emptySet();
 }
