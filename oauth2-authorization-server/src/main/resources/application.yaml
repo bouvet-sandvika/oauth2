@@ -11,6 +11,19 @@ security:
       jwt:
         key-value: secret-jwt-key # Access token shared secret
 
+bouvet:
+  authorization:
+    users:
+      - username: oauth2-user
+        password: user-password
+        authorities:
+          - USER
+      - username: oauth2-admin
+        password: admin-password
+        authorities:
+          - USER
+          - ADMIN
+
 logging:
   level:
     org.springframework: DEBUG
