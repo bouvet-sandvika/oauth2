@@ -19,4 +19,6 @@ public class AuthorizationProperties {
 
     @Builder.Default
     private List<UserProperties> users = emptyList();
+    @Builder.Default
+    private List<ClientProperties> clients = emptyList();
 }

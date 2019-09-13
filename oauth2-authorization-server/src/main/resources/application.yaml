@@ -23,6 +23,15 @@ bouvet:
         authorities:
           - USER
           - ADMIN
+    clients:
+      - client-id: oauth2-client
+        secret: client-password
+        grant-types:
+          - authorization_code
+        scopes:
+          - read
+        redirect-uris:
+          - http://localhost:9291/login
 
 logging:
   level:

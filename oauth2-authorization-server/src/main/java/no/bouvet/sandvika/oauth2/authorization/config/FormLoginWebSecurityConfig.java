@@ -22,10 +22,10 @@ import java.util.stream.Collectors;
 @EnableWebSecurity
 public class FormLoginWebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-    private final List<UserProperties> userProperties;
+    private final List<UserProperties> userPropertiesList;
 
     public FormLoginWebSecurityConfig(AuthorizationProperties authorizationProperties) {
-        this.userProperties = authorizationProperties.getUsers();
+        this.userPropertiesList = authorizationProperties.getUsers();
     }
 
     //@formatter:off
@@ -45,7 +45,7 @@ public class FormLoginWebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     public void configure(AuthenticationManagerBuilder auth) throws Exception {
         InMemoryUserDetailsManagerConfigurer<AuthenticationManagerBuilder> configurer = auth.inMemoryAuthentication();
-        userProperties.forEach(userProperties -> configurer.withUser(createUserDetails(userProperties)));
+        userPropertiesList.forEach(userProperties -> configurer.withUser(createUserDetails(userProperties)));
     }
 
     private UserDetails createUserDetails(UserProperties userProperties) {
