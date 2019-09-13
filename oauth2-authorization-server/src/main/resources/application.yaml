@@ -9,7 +9,9 @@ security:
   oauth2:
     authorization:
       jwt:
-        key-value: secret-jwt-key # Access token shared secret
+        key-store: classpath:authorization-server.jks # For asymmetric signing of access token
+        key-store-password: Super Secret JWT Keypass
+        key-alias: authorization-server
 
 bouvet:
   authorization:
