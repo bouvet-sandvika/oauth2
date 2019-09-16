@@ -10,14 +10,12 @@ import org.springframework.context.annotation.Import;
 import org.springframework.security.oauth2.config.annotation.builders.InMemoryClientDetailsServiceBuilder;
 import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;
-import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerEndpointsConfigurer;
 import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
 
 import java.util.List;
 
 @Configuration
-@EnableAuthorizationServer
 @Import(AuthorizationServerTokenServicesConfiguration.class) // JWT token support
 public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdapter {
 
@@ -50,12 +48,12 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 
         clientPropertiesList.forEach(clientProperties -> clientDetailsServiceBuilder
             .withClient(clientProperties.getClientId())
-                .secret(clientProperties.getSecret())
-                .authorizedGrantTypes(clientProperties.getGrantTypes().toArray(new String[0]))
-                .scopes(clientProperties.getScopes().toArray(new String[0]))
-                .redirectUris(clientProperties.getRedirectUris().toArray(new String[0]))
-                .accessTokenValiditySeconds(sessionTimeout)
-                .autoApprove(true));
+            .secret(clientProperties.getSecret())
+            .authorizedGrantTypes(clientProperties.getGrantTypes().toArray(new String[0]))
+            .scopes(clientProperties.getScopes().toArray(new String[0]))
+            .redirectUris(clientProperties.getRedirectUris().toArray(new String[0]))
+            .accessTokenValiditySeconds(sessionTimeout)
+            .autoApprove(true));
     }
     //@formatter:on
 }

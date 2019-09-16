@@ -1,5 +1,11 @@
 server:
   port: 9191
+  ssl:
+    key-store: classpath:authorization-server.jks
+    key-store-password: Super Secret JWT Keypass
+    key-alias: authorization-server
+    trust-store: classpath:authorization-server-trust.jks
+    trust-store-password: Super Secret JWT Keypass
   servlet:
     context-path: /as
     session:
@@ -15,6 +21,8 @@ security:
 
 bouvet:
   authorization:
+    client-auth-type: x509
+    client-auth-port: 9192
     users:
       - username: oauth2-user
         password: user-password
@@ -28,7 +36,6 @@ bouvet:
           - ADMIN
     clients:
       - client-id: oauth2-client
-        secret: client-password
         grant-types:
           - authorization_code
         scopes:
@@ -36,7 +43,7 @@ bouvet:
         allowed-authorities:
           - USER
         redirect-uris:
-          - http://localhost:9291/login
+          - https://localhost:9291/login
 
 logging:
   level:

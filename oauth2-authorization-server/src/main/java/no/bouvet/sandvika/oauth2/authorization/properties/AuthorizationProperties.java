@@ -17,6 +17,8 @@ import static java.util.Collections.emptyList;
 @ToString
 public class AuthorizationProperties {
 
+    private String clientAuthType;
+    private Integer clientAuthPort;
     @Builder.Default
     private List<UserProperties> users = emptyList();
     @Builder.Default
