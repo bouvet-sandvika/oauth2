@@ -1,6 +1,6 @@
 # Java/Spring OAuth2 example code
 
-This repository contains OAuth2 sample projects
+This repository contains OAuth2 sample projects which implements the *authorization code* grant type.
 
 ## Features:
 
