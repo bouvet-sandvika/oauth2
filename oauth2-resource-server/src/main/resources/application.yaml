@@ -1,0 +1,12 @@
+server:
+  port: 9875
+
+security:
+  oauth2:
+    resource:
+      jwt:
+        key-value: secret-jwt-key
+
+logging:
+  level:
+    org.springframework: DEBUG
