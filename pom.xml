@@ -23,7 +23,16 @@
 
     <modules>
         <module>oauth2-authorization-server</module>
+        <module>oauth2-spring-client</module>
     </modules>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
 
     <dependencyManagement>
         <dependencies>

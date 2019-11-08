@@ -38,7 +38,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
                 .secret("client-password")
                 .authorizedGrantTypes("authorization_code")
                 .scopes("read")
-                .redirectUris("http://localhost:9291/login")
+                .redirectUris("http://localhost:9876/login")
                 .accessTokenValiditySeconds(sessionTimeout)
                 .autoApprove(true);
     }
