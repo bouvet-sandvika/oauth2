@@ -1,0 +1,15 @@
+server:
+  port: 9876
+
+security:
+  oauth2:
+    client:
+      clientId: 7121fb82e7b5cef0552b
+      clientSecret: 1230109bc6d9083e1ae64f3b5739d801aa6da8e1
+      accessTokenUri: https://github.com/login/oauth/access_token
+      userAuthorizationUri: https://github.com/login/oauth/authorize
+      clientAuthenticationScheme: form
+      scope: repo
+    resource:
+      userInfoUri: https://api.github.com/user
+      preferTokenInfo: false
