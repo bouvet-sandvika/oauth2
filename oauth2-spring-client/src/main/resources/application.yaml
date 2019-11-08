@@ -1,0 +1,13 @@
+server:
+  port: 9876
+
+security:
+  oauth2:
+    client:
+      clientId: oauth2-client
+      clientSecret: client-password
+      accessTokenUri: http://localhost:9191/as/oauth/token
+      userAuthorizationUri: http://localhost:9191/as/oauth/authorize
+    resource:
+      jwt:
+        key-value: secret-jwt-key # Access token shared secret

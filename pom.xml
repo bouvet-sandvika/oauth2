@@ -23,6 +23,7 @@
 
     <modules>
         <module>oauth2-authorization-server</module>
+        <module>oauth2-spring-client</module>
     </modules>
 
     <dependencies>
