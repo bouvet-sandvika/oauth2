@@ -12,7 +12,7 @@ import javax.annotation.security.RolesAllowed;
 
 @Slf4j
 @RestController
-public class EmployeeRestService
+public class UserDetailsRestService
 {
     @RolesAllowed({"ROLE_USER"})
     @RequestMapping(value = "/user", method = RequestMethod.GET)
