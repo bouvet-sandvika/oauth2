@@ -1,5 +1,5 @@
 server:
-  port: 9875
+  port: 9393
 
 security:
   oauth2:
