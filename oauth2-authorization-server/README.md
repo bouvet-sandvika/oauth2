@@ -27,9 +27,15 @@ curl -i -u "oauth2-client:client-password" "http://localhost:9191/as/oauth/token
 Result => JWT-encoded access token
 
 #### All in one
-````
+```
 curl -i -c cookies.txt "http://localhost:9191/as/oauth/authorize" -d "response_type=code&client_id=oauth2-client"
 curl -i -b cookies.txt -c cookies.txt "http://localhost:9191/as/login" -d "username=oauth2-user&password=user-password"
 code=$(curl -si -b cookies.txt "http://localhost:9191/as/oauth/authorize" -d "redirect_uri=http://localhost:9876/login" | ggrep -oP 'Location:.*code=\K\w+')
 curl -i -u "oauth2-client:client-password" "http://localhost:9191/as/oauth/token" -d "code=$code&grant_type=authorization_code&redirect_uri=http://localhost:9876/login"
-````
+```
+
+#### Get public key and certificate
+```
+keytool -list -rfc --keystore authorization-server.jks -storepass 'Super Secret JWT Keypass' | openssl x509 -inform pem -pubkey
+```
+
