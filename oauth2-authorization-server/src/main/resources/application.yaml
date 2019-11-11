@@ -19,13 +19,13 @@ bouvet:
       - username: oauth2-user
         password: user-password
         authorities:
-          - USER
-          - USER_PLUS
+          - ROLE_USER
+          - ROLE_USER_PLUS
       - username: oauth2-admin
         password: admin-password
         authorities:
-          - USER
-          - ADMIN
+          - ROLE_USER
+          - ROLE_ADMIN
     clients:
       - client-id: oauth2-client
         secret: client-password
@@ -34,9 +34,9 @@ bouvet:
         scopes:
           - read
         allowed-authorities:
-          - USER
+          - ROLE_USER
         redirect-uris:
-          - http://localhost:9291/login
+          - http://localhost:9876/login
 
 logging:
   level:
