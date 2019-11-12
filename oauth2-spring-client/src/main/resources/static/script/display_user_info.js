@@ -51,6 +51,24 @@ function retrieveAndRender() {
         console.log("Ukjent feil ved kall til tjeneste");
     };
     xhr.send();
+
+    var xhrData = new XMLHttpRequest();
+    xhrData.open('GET', '/data');
+    xhrData.onload = function () {
+        if (xhrData.status === 200) {
+            try {
+                document.getElementById('userInfoTable').appendChild(createRow('Backend data', xhrData.response))
+            } catch (e) {
+                console.log("Feil ved parsing/rendering av resultat fra tjenestekall");
+            }
+        } else {
+            console.log("Forventet HTTP 200, fikk " + xhrData.status);
+        }
+    };
+    xhrData.onerror = function () {
+        console.log("Ukjent feil ved kall til tjeneste");
+    };
+    xhrData.send();
 }
 
 retrieveAndRender(); // Hent initielle data

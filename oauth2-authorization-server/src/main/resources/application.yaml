@@ -3,7 +3,7 @@ server:
   servlet:
     context-path: /as
     session:
-      timeout: 60 # Session timeout in seconds, to require periodic client re-authentication
+      timeout: 600 # Session timeout in seconds, to require periodic client re-authentication
 
 security:
   oauth2:
