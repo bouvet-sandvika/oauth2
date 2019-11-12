@@ -12,28 +12,18 @@ import static java.lang.String.format;
 @RestController
 public class ResourceRestService {
 
-    @RolesAllowed({"ROLE_USER", "ROLE_BRUKER", "ROLE_SERVER_BRUKER"})
+    @RolesAllowed({"ROLE_USER"})
     @RequestMapping(value = "/hentBackendData")
     @ResponseBody
     public String hentData(OAuth2Authentication auth) {
         if (auth.getUserAuthentication() != null) {
-            return format("Hei på deg bruker '%s'. Jeg ser du har følgende authorities: %s. Klienten '%s' har følgende scopes: %s",
+            return format("Hello user '%s'. You have the following authorities: %s. Your client '%s' has the following scopes: %s",
                     auth.getPrincipal(),
                     auth.getAuthorities(),
                     auth.getOAuth2Request().getClientId(),
                     auth.getOAuth2Request().getScope());
         } else {
-            return format("Hei på deg klient '%s'. Jeg ser du har følgende authorities: %s, og følgende scopes: %s",
-                    auth.getOAuth2Request().getClientId(),
-                    auth.getAuthorities(),
-                    auth.getOAuth2Request().getScope());
+            return "Unknown authentication!";
         }
-    }
-
-    @RolesAllowed("INGEN_TILGANG")
-    @RequestMapping(value = "/ingenTilgang")
-    @ResponseBody
-    public String ingenTilgang() {
-        throw new IllegalStateException("FEIL: Skal ikke kunne bli kalt!!");
     }
 }
