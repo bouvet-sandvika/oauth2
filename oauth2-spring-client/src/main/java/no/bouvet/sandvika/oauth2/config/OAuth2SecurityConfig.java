@@ -36,7 +36,7 @@ public class OAuth2SecurityConfig extends WebSecurityConfigurerAdapter {
                     .authenticated()
                 .and()
                     .csrf()
-                        .disable(); // Nødvendig for at GET på /logout skal fungere
+                .disable(); // Required for GET on /logout
     }
 
     @Bean
@@ -55,7 +55,7 @@ public class OAuth2SecurityConfig extends WebSecurityConfigurerAdapter {
             public boolean hasError(ClientHttpResponse response) throws IOException {
                 if (response.getStatusCode() == HttpStatus.UNAUTHORIZED &&
                         response.getHeaders().containsKey(HttpHeaders.WWW_AUTHENTICATE)) {
-                    return false; // Ikke kast Exception ved token-relaterte feil
+                    return false; // Do not throw Exception on token related errors
                 }
                 return super.hasError(response);
             }
