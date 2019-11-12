@@ -33,7 +33,7 @@ bouvet:
         scopes:
           - read
         redirect-uris:
-          - http://localhost:9876/login
+          - http://localhost:9292/login
 
 logging:
   level:
