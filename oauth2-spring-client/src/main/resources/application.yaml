@@ -1,5 +1,5 @@
 server:
-  port: 9876
+  port: 9292
 
 security:
   oauth2:
@@ -11,3 +11,8 @@ security:
     resource:
       jwt:
         key-value: secret-jwt-key # Access token shared secret
+
+logging:
+  level:
+    org.springframework: DEBUG
+    no.bouvet.sandvika.oauth2: TRACE
