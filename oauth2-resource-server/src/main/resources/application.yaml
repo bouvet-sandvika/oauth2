@@ -1,5 +1,5 @@
 server:
-  port: 9875
+  port: 9393
 
 security:
   oauth2:
@@ -10,3 +10,4 @@ security:
 logging:
   level:
     org.springframework: DEBUG
+    no.bouvet.sandvika.oauth2: TRACE
