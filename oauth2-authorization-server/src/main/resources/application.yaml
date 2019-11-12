@@ -43,7 +43,7 @@ bouvet:
         allowed-authorities:
           - ROLE_USER
         redirect-uris:
-          - http://localhost:9292/login
+          - https://localhost:9292/login
 
 logging:
   level:

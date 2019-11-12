@@ -46,7 +46,7 @@ export SK_KSTORE_PASS='Super Secret JWT Keypass'
 export SK_TSTORE='jks/authorization-server/authorization-server-public.pem'
 curl -i --cacert "${SK_TSTORE}" -c cookies.txt "https://localhost:9191/as/oauth/authorize" -d "response_type=code&client_id=oauth2-client"
 curl -i --cacert "${SK_TSTORE}" -b cookies.txt -c cookies.txt "https://localhost:9191/as/login" -d "username=oauth2-user&password=user-password"
-#curl -i --cacert "${SK_TSTORE}" -b cookies.txt "https://localhost:9191/as/oauth/authorize" -d "redirect_uri=https://localhost:9291/login"
-code=$(curl -si --cacert "${SK_TSTORE}" -b cookies.txt "https://localhost:9191/as/oauth/authorize" -d "redirect_uri=https://localhost:9291/login" | ggrep -oP 'Location:.*code=\K\w+')
-curl -i --cacert "${SK_TSTORE}" --cert "${SK_KSTORE}:${SK_KSTORE_PASS}" "https://localhost:9192/as/oauth/token" -d "code=$code&grant_type=authorization_code&redirect_uri=https://localhost:9291/login"
+#curl -i --cacert "${SK_TSTORE}" -b cookies.txt "https://localhost:9191/as/oauth/authorize" -d "redirect_uri=https://localhost:9292/login"
+code=$(curl -si --cacert "${SK_TSTORE}" -b cookies.txt "https://localhost:9191/as/oauth/authorize" -d "redirect_uri=https://localhost:9292/login" | ggrep -oP 'Location:.*code=\K\w+')
+curl -i --cacert "${SK_TSTORE}" --cert "${SK_KSTORE}:${SK_KSTORE_PASS}" "https://localhost:9192/as/oauth/token" -d "code=$code&grant_type=authorization_code&redirect_uri=https://localhost:9292/login"
 ```

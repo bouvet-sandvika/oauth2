@@ -1,13 +1,19 @@
 server:
   port: 9292
+  ssl:
+    key-store: classpath:oauth2-client.jks
+    key-store-password: Super Secret JWT Keypass
+    key-alias: oauth2-client
+    trust-store: classpath:oauth2-client-trust.jks
+    trust-store-password: Super Secret JWT Keypass
 
 security:
   oauth2:
     client:
       clientId: oauth2-client
-      clientSecret: client-password
-      accessTokenUri: http://localhost:9191/as/oauth/token
-      userAuthorizationUri: http://localhost:9191/as/oauth/authorize
+      client-authentication-scheme: none # Vi bruker x509 i stedet. Dette valget skrur av innsending av client-id og secret ved henting av token
+      accessTokenUri: https://localhost:9192/as/oauth/token
+      userAuthorizationUri: https://localhost:9191/as/oauth/authorize
     resource:
       jwt:
         key-value: "-----BEGIN PUBLIC KEY-----
@@ -19,3 +25,8 @@ D8zAxFeLpdysyEn5jwhKM3Vcd6wh/A6DfCypOaQdQzOi/UQp7QExtmpGHyMA69Vq
 mDpxfG3G0XNJCgMYYfxheory1TNElQc4d/Fcl/0xTyfOO6ufaJd+F5YroEK92nGU
 BwIDAQAB
 -----END PUBLIC KEY-----"
+
+logging:
+  level:
+    org.springframework: DEBUG
+    no.bouvet.sandvika.oauth2: TRACE

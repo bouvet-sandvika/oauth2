@@ -1,5 +1,7 @@
 package no.bouvet.sandvika.oauth2.config;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.security.oauth2.client.EnableOAuth2Sso;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.context.annotation.Bean;
@@ -14,15 +16,29 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.oauth2.provider.authentication.OAuth2AuthenticationDetails;
+import org.springframework.util.ResourceUtils;
 import org.springframework.web.client.DefaultResponseErrorHandler;
 import org.springframework.web.client.RestTemplate;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 
 @Configuration
 @EnableOAuth2Sso
 @EnableGlobalMethodSecurity(jsr250Enabled = true)
 public class OAuth2SecurityConfig extends WebSecurityConfigurerAdapter {
+
+    @Autowired
+    private void configureKeyStores(@Value("${server.ssl.key-store}") String keyStore,
+                                    @Value("${server.ssl.key-store-password}") String keyStorePassword,
+                                    @Value("${server.ssl.trust-store}") String trustStore,
+                                    @Value("${server.ssl.trust-store-password}") String trustStorePassword) throws FileNotFoundException
+    {
+        System.setProperty("javax.net.ssl.keyStore", ResourceUtils.getFile(keyStore).getAbsolutePath());
+        System.setProperty("javax.net.ssl.keyStorePassword", keyStorePassword);
+        System.setProperty("javax.net.ssl.trustStore", ResourceUtils.getFile(trustStore).getAbsolutePath());
+        System.setProperty("javax.net.ssl.trustStorePassword", trustStorePassword);
+    }
 
     @Override
     public void configure(WebSecurity web) {
