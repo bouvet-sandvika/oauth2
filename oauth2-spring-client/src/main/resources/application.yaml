@@ -19,3 +19,8 @@ D8zAxFeLpdysyEn5jwhKM3Vcd6wh/A6DfCypOaQdQzOi/UQp7QExtmpGHyMA69Vq
 mDpxfG3G0XNJCgMYYfxheory1TNElQc4d/Fcl/0xTyfOO6ufaJd+F5YroEK92nGU
 BwIDAQAB
 -----END PUBLIC KEY-----"
+
+logging:
+  level:
+    org.springframework: DEBUG
+    no.bouvet.sandvika.oauth2: TRACE

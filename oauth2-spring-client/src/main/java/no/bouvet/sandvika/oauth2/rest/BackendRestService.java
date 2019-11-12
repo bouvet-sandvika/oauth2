@@ -16,6 +16,6 @@ public class BackendRestService {
 
     @RequestMapping(value = "/data", produces = MediaType.APPLICATION_JSON_UTF8_VALUE, method = RequestMethod.GET)
     public String getData() {
-        return restTemplate.getForEntity("http://localhost:9875/hentBackendData", String.class).getBody();
+        return restTemplate.getForEntity("http://localhost:9393/hentBackendData", String.class).getBody();
     }
 }

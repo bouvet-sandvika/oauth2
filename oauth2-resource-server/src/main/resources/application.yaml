@@ -18,3 +18,4 @@ BwIDAQAB
 logging:
   level:
     org.springframework: DEBUG
+    no.bouvet.sandvika.oauth2: TRACE
